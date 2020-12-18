@@ -1,0 +1,94 @@
+<SOAP-ENV:Envelope xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <SOAP-ENV:Body>
+    <tns:Query xmlns:tns="http://tempuri.org/">
+      <tns:reportName>历史数据记录表.rdl</tns:reportName>
+      <tns:queryTime>2020_12_17_10_12_08</tns:queryTime>
+      <tns:userId>-1</tns:userId>
+      <tns:centerType>SS</tns:centerType>
+      <tns:comandType>StoredProcedure</tns:comandType>
+      <tns:commandText>XZ\gPq{|wz[qovitLi|iZmkwzlUiqv</tns:commandText>
+      <tns:queryParameters>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>DateTime</tns:DataType>
+          <tns:Name>StartTime</tns:Name>
+          <tns:Value>2020-12-16 22:15:38</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>DateTime</tns:DataType>
+          <tns:Name>EndTime</tns:Name>
+          <tns:Value>2020-12-16 22:15:38</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>CenterId</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>GroupId</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>StationCategory</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>StationId</tns:Name>
+          <tns:Value>29000001</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>StationNameLike</tns:Name>
+          <tns:Value>0</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>EquipmentCategory</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>EquipmentId</tns:Name>
+          <tns:Value>29000546</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>EquipmentNameLike</tns:Name>
+          <tns:Value>0</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>SignalCategory</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>SignalId</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>SignalNameLike</tns:Name>
+          <tns:Value>0</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>ThresholdType</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>SignalProperty</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+        <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
+          <tns:DataType>String</tns:DataType>
+          <tns:Name>QueryUserId</tns:Name>
+          <tns:Value>-1</tns:Value>
+        </tns:QueryParameter>
+      </tns:queryParameters>
+    </tns:Query>
+  </SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
