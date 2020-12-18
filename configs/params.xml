@@ -76,7 +76,7 @@
         <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
           <tns:DataType>String</tns:DataType>
           <tns:Name>ThresholdType</tns:Name>
-          <tns:Value>-1</tns:Value>
+          <tns:Value>5</tns:Value>
         </tns:QueryParameter>
         <tns:QueryParameter xmlns:tns="http://schemas.datacontract.org/2004/07/ReportService.Reports">
           <tns:DataType>String</tns:DataType>

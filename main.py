@@ -7,17 +7,20 @@ from dateutil.parser import parse as dateParser
 from processor import Processor
 import utils
 
-def main_loop(proc: Processor, start_time: datetime = None, end_time: datetime = None):
+def main_loop(proc: Processor, start_time: datetime = None, end_time: datetime = None, equipments: str = "ABGH"):
     '''主循环，每次查找 10000 条记录后，自动换下一批
     '''
 
-    # 在 Request 参数中设定时间
+    # 在 Request 参数中设定时间，设备这些参数
     if end_time is None:
         if start_time is None:
             start_time = datetime.now().replace(hour=0, minute=0, second=0)
         end_time = start_time.replace(hour=23, minute=59, second=59)
+    equip_param = utils.get_equip_param(equipments)
+
     proc.updateField("StartTime", utils.datetime2Str(start_time))
     proc.updateField("EndTime", utils.datetime2Str(end_time))
+    proc.updateField("EquipmentId", equip_param)
 
     results = []
     while True:
@@ -62,6 +65,7 @@ def __main__():
 
     parser.add_argument("--start", type=str, required=False, help='e.g., "20201201-103000"')
     parser.add_argument("--end", type=str, required=False, help='e.g., "20201201-235959"')
+    parser.add_argument("--equipments", type=str, default="ABGH", help='e.g., "ABGH"')
 
 
     args = parser.parse_args()
@@ -70,7 +74,7 @@ def __main__():
 
     # 开始循环
     proc = Processor()
-    main_loop(proc, start, end)
+    main_loop(proc, start, end, args.equipments)
 
 if __name__ == "__main__":
     __main__()

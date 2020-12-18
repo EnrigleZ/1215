@@ -108,3 +108,17 @@ DEPRECATED_COLUMNS = [
     "BaseTypeName",
     "GroupLineID",
 ]
+
+
+EQUIPMENT_MAP = {
+    "A": 29000546,
+    "B": 29000536,
+    "G": 29000534,
+    "H": 29000548
+}
+
+def get_equip_param(equipments: str):
+    '''生成查询特定设备的参数
+    '''
+    equipments = equipments.upper()
+    return ",".join(str(EQUIPMENT_MAP[x]) for x in equipments)
