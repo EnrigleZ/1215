@@ -1,4 +1,5 @@
-import os
+'''一些辅助函数
+'''
 from pathlib import Path
 from datetime import datetime
 from dateutil.parser import parse as dateParser
@@ -10,6 +11,8 @@ def datetime2Str(t: datetime, pattern="%Y-%m-%d %H:%M:%S"):
 
 
 def compare_rows(large: list, small: list):
+    '''比较新查询到的结果中，哪部分已经被重复查询过了
+    '''
     # [12.15], [12.15], ..., [12.14], [12.14]
     # [12.14], [12.13], ..., [12.13], [12.13]
 
@@ -39,6 +42,8 @@ def compare_rows(large: list, small: list):
 SAVE_DIR = "./results"
 
 def save_xlsx(header, rows, filename="output"):
+    '''保存到 Excel 文件中
+    '''
     save_dir_path = Path(SAVE_DIR)
     save_dir_path.mkdir(exist_ok=True)
 
@@ -64,6 +69,8 @@ def save_xlsx(header, rows, filename="output"):
 
 
 def get_order(header: list):
+    '''按照正确的顺序重排表头顺序
+    '''
     golden_order = [
         ("CenterName", "监控中心"),
         ("GroupName", "行政区划"),
@@ -84,6 +91,8 @@ def get_order(header: list):
 
 
 def convert_time_column(rows, order, golden_order):
+    '''把时间列刷成对应的格式
+    '''
     time_columns_index = -1
     for golden_index, (key, _) in enumerate(golden_order):
         if key == "RecordTime":
@@ -94,6 +103,7 @@ def convert_time_column(rows, order, golden_order):
         row[time_columns_index] = datetime2Str(dt, "%Y/%m/%d %H:%M:%S")
     return time_columns_index
 
+# 这两个字段返回了，但是不在结果里显示，不知道干啥的
 DEPRECATED_COLUMNS = [
     "BaseTypeName",
     "GroupLineID",
