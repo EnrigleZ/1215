@@ -103,6 +103,15 @@ def convert_time_column(rows, order, golden_order):
         row[time_columns_index] = datetime2Str(dt, "%Y/%m/%d %H:%M:%S")
     return time_columns_index
 
+LOG_DIR = "./temp"
+
+def save_response_log(response):
+    log_dir_path = Path(LOG_DIR)
+    log_dir_path.mkdir(exist_ok=True)
+    print(response.text,
+        file=log_dir_path.joinpath("last_response.log").open("w", encoding="gb2312"))
+
+
 # 这两个字段返回了，但是不在结果里显示，不知道干啥的
 DEPRECATED_COLUMNS = [
     "BaseTypeName",

@@ -4,6 +4,8 @@ from datetime import datetime
 from xml.dom.minidom import parseString, Document, Element
 from dateutil.parser import parse as dateParser
 
+import utils
+
 class Processor:
     '''把网络请求以及结果解析等功能封装到这里了
     '''
@@ -90,6 +92,8 @@ class Processor:
             headers=self.headers,
             data=payload
         )
+
+        utils.save_response_log(response)
 
         dom = parseString(response.text)
         self.last_dom = dom

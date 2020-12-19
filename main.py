@@ -15,7 +15,10 @@ def main_loop(proc: Processor, start_time: datetime = None, end_time: datetime =
     if end_time is None:
         if start_time is None:
             start_time = datetime.now().replace(hour=0, minute=0, second=0)
-        end_time = start_time.replace(hour=23, minute=59, second=59)
+        end_time = datetime.now().replace(hour=23, minute=59, second=59)
+    else:
+        assert start_time, "Please enter a '--start' argument, "\
+            "e.g., 'python ./main.py --start 20201215-003000'"
     equip_param = utils.get_equip_param(equipments)
 
     proc.updateField("StartTime", utils.datetime2Str(start_time))
