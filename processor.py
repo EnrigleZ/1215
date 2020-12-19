@@ -1,7 +1,7 @@
-import os
-import requests
+from time import sleep
 from datetime import datetime
 from xml.dom.minidom import parseString, Document, Element
+import requests
 from dateutil.parser import parse as dateParser
 
 import utils
@@ -14,6 +14,7 @@ class Processor:
         self.payload = None
         # 原始的 XML 结构化参数
         self.payload_xml = None
+        self.request_count = 0
 
         # 从文件里读初始参数，并且初始化当前本地查询时间
         with open("configs/params.xml", "r", encoding="utf-8") as file:
@@ -24,7 +25,8 @@ class Processor:
         # 请求头，反正不加这几行的话，后端就报错
         self.headers = {
             'Content-Type': 'text/xml; charset=utf-8',
-            'Cookie': 'ASP.NET_SessionId=q4bcmh4x4phxepga5mlrkfke; Token=b4d4ae9f-1aca-401b-ab00-318904d6f4df; User_Id=admin; CurrentUserId=-1',
+            'Cookie': 'ASP.NET_SessionId=q4bcmh4x4phxepga5mlrkfke; '\
+                'Token=b4d4ae9f-1aca-401b-ab00-318904d6f4df; User_Id=admin; CurrentUserId=-1',
             'SOAPAction': '"http://tempuri.org/IQueryReportService/Query"'
         }
 
@@ -86,17 +88,22 @@ class Processor:
         # Update payload here?
         payload = self.payload.encode('utf-8')
 
+        if self.request_count == 20:
+            sleep(1.732)
+            self.request_count = 0
         response = requests.request(
             "POST",
             self.url,
             headers=self.headers,
             data=payload
         )
+        self.request_count += 1
 
         utils.save_response_log(response)
 
         dom = parseString(response.text)
         self.last_dom = dom
+
         return dom
 
 
