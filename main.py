@@ -14,7 +14,8 @@ def main_loop(proc: Processor,
               end_time: datetime = None,
               equipment: str = "ABGH",
               delta: timedelta = None,
-              save_filename: str = None
+              save_filename: str = None,
+              split_size: int = 100000
               ):
     '''主循环，每次查找 10000 条记录后，自动换下一批
     '''
@@ -88,7 +89,8 @@ def main_loop(proc: Processor,
     utils.save_xlsx(
         header=proc.parseHeader(proc.last_dom),
         rows=results,
-        filename=save_filename
+        filename=save_filename,
+        split_size=split_size
     )
 
 def __main__():
@@ -100,7 +102,7 @@ def __main__():
     parser.add_argument("--equipments", type=str, default="A", help='e.g., "ABGH"')
     parser.add_argument("--delta_hours", type=int, default=4, help='e.g., 4')
     parser.add_argument("--save", type=str, default='', help='Save filename')
-
+    parser.add_argument("--split_size", type=int, default=100000, help="Limit saving records in single xlsx.")
 
     args = parser.parse_args()
     start = dateParser(args.start) if args.start else None
@@ -108,10 +110,11 @@ def __main__():
     equipments = args.equipments
     delta_hours = timedelta(hours=args.delta_hours)
     save_name = args.save or None
+    split_size = args.split_size
 
     # 开始循环
     proc = Processor()
-    main_loop(proc, start, end, equipments, delta_hours, save_name)
+    main_loop(proc, start, end, equipments, delta_hours, save_name, split_size)
 
 if __name__ == "__main__":
     __main__()

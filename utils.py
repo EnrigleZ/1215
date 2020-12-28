@@ -1,5 +1,6 @@
 '''一些辅助函数
 '''
+import os
 from pathlib import Path
 from datetime import datetime
 from dateutil.parser import parse as dateParser
@@ -41,32 +42,44 @@ def compare_rows(large: list, small: list):
 
 SAVE_DIR = "./results"
 
-def save_xlsx(header, rows, filename="output"):
+def save_xlsx(header, rows, filename="output.xlsx", split_size=100000):
     '''保存到 Excel 文件中
     '''
     save_dir_path = Path(SAVE_DIR)
     save_dir_path.mkdir(exist_ok=True)
 
     filename = str(save_dir_path.joinpath(filename))
-    workbook = xlsxwriter.Workbook(filename)
+    filename_pattern, ext = os.path.splitext(filename)
 
-    sheet = workbook.add_worksheet()
-    header_format = workbook.add_format()
-    header_format.set_bold(True)
-    header_format.set_align("center")
+    part_cnt = 0
+    need_split = split_size < len(rows)
+    if need_split:
+        print("* Splitting output files.")
 
-    order, golden_order = get_order(header)
-    convert_time_column(rows, order, golden_order)
+    while part_cnt * split_size < len(rows):
+        fn = filename_pattern + f".part.{part_cnt}" + ext\
+            if need_split else filename
+        workbook = xlsxwriter.Workbook(fn)
+        current_rows = rows[part_cnt * split_size: (part_cnt + 1) * split_size]
+        print(f"* Saving {len(current_rows)} rows to {fn}.")
 
-    for col, golden_order in enumerate(golden_order):
-        sheet.write(0, col, golden_order[1], header_format)
+        sheet = workbook.add_worksheet()
+        header_format = workbook.add_format()
+        header_format.set_bold(True)
+        header_format.set_align("center")
 
-    for row, record in enumerate(rows):
-        for col, index in enumerate(order):
-            sheet.write(row + 1, col, record[index])
+        order, golden_order = get_order(header)
+        convert_time_column(current_rows, order, golden_order)
 
-    workbook.close()
+        for col, golden_order in enumerate(golden_order):
+            sheet.write(0, col, golden_order[1], header_format)
 
+        for row, record in enumerate(current_rows):
+            for col, index in enumerate(order):
+                sheet.write(row + 1, col, record[index])
+
+        workbook.close()
+        part_cnt += 1
 
 def get_order(header: list):
     '''按照正确的顺序重排表头顺序

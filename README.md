@@ -18,9 +18,10 @@ python ./main --start <开始日期+时间> --end <结束日期+时间> --equipm
 - `--equipment`: 查询设备， 支持 `"ABGH"`，例如 `"A"` 代表仅查询A设备。
 - `--delta_hours`: 每次间隔时间，为了防止单次查询达到上限`60000`条导致的数据丢失，默认为`4`，代表每次查询四个小时的记录。
 - `--save`: 保存文件名，默认为时间+设备。
+- `--split_size`: 单个文件最大保存条目，默认为`100000`。
 
 ## 调用示例
 
-```basg
+```bash
 python ./main.py --start 20201219 --end 20201219-235959 --equipment A --delta_hours 4
 ```
