@@ -135,8 +135,12 @@ DEPRECATED_COLUMNS = [
 EQUIPMENT_MAP = {
     "A": 29000546,
     "B": 29000536,
+    "C": 29000538,
+    "D": 29000540,
+    "E": 29000544,
+    "F": 29000542,
     "G": 29000534,
-    "H": 29000548
+    "H": 29000548,
 }
 
 def get_equip_param(equipments: str):
